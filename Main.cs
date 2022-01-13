@@ -12,27 +12,41 @@ namespace SRXDHelperEvents {
             
             var harmony = new Harmony("HelperEvents");
             
-            harmony.PatchAll(typeof(NoteEvents));
+            harmony.PatchAll(typeof(GameplayEvents));
 
-            NoteEvents.OnNoteHit += args => Logger.LogMessage($"Hit note: {args.NoteIndex}, {args.Note.NoteType}, {args.TimeOffset:0.00}");
-            NoteEvents.OnSustainedNoteTick += args => Logger.LogMessage($"Sustained note tick: {args.NoteIndex}, {args.Note.NoteType}");
-            NoteEvents.OnOverbeat += () => Logger.LogMessage("Overbeat");
-            NoteEvents.OnNoteMiss += args => {
-                int endNoteIndex = args.EndNoteIndex;
-                
-                if (endNoteIndex >= 0)
-                    Logger.LogMessage($"Missed note: {args.NoteIndex}, {args.Note.NoteType}, {endNoteIndex}, {args.EndNote.NoteType}");
-                else
-                    Logger.LogMessage($"Missed note: {args.NoteIndex}, {args.Note.NoteType}");
-            };
-            NoteEvents.OnSustainedNoteMiss += args => {
-                int endNoteIndex = args.EndNoteIndex;
-                
-                if (endNoteIndex >= 0)
-                    Logger.LogMessage($"Broke sustained note: {args.NoteIndex}, {args.Note.NoteType}, {endNoteIndex}, {args.EndNote.NoteType}");
-                else
-                    Logger.LogMessage($"Broke sustained note: {args.NoteIndex}, {args.Note.NoteType}");
-            };
+            // GameplayEvents.OnNoteHit += args => {
+            //     int endNoteIndex = args.EndNoteIndex;
+            //     
+            //     if (endNoteIndex >= 0)
+            //         Logger.LogMessage($"Hit note: {args.NoteIndex}, {args.Note.NoteType}, {endNoteIndex}, {args.EndNote.NoteType}, {args.TimeOffset}");
+            //     else
+            //         Logger.LogMessage($"Hit note: {args.NoteIndex}, {args.Note.NoteType}, {args.TimeOffset}");
+            // };
+            // GameplayEvents.OnSustainedNoteTick += args => {
+            //     int endNoteIndex = args.EndNoteIndex;
+            //     
+            //     if (endNoteIndex >= 0)
+            //         Logger.LogMessage($"Sustained note tick: {args.NoteIndex}, {args.Note.NoteType}, {endNoteIndex}, {args.EndNote.NoteType}");
+            //     else
+            //         Logger.LogMessage($"Sustained note tick: {args.NoteIndex}, {args.Note.NoteType}");
+            // };
+            // GameplayEvents.OnOverbeat += () => Logger.LogMessage("Overbeat");
+            // GameplayEvents.OnNoteMiss += args => {
+            //     int endNoteIndex = args.EndNoteIndex;
+            //     
+            //     if (endNoteIndex >= 0)
+            //         Logger.LogMessage($"Missed note: {args.NoteIndex}, {args.Note.NoteType}, {endNoteIndex}, {args.EndNote.NoteType}");
+            //     else
+            //         Logger.LogMessage($"Missed note: {args.NoteIndex}, {args.Note.NoteType}");
+            // };
+            // GameplayEvents.OnSustainedNoteFailed += args => {
+            //     int endNoteIndex = args.EndNoteIndex;
+            //     
+            //     if (endNoteIndex >= 0)
+            //         Logger.LogMessage($"Broke sustained note: {args.NoteIndex}, {args.Note.NoteType}, {endNoteIndex}, {args.EndNote.NoteType}");
+            //     else
+            //         Logger.LogMessage($"Broke sustained note: {args.NoteIndex}, {args.Note.NoteType}");
+            // };
         }
     }
 }
